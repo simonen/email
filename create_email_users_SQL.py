@@ -3,6 +3,8 @@ import mysql.connector, hashlib
 
 ######## CREATE NEW VIRTUAL MAILBOX USERS AND INSERT THEM INTO A SQL DATABASE
 
+# Create the mail user
+
 username = input('Enter your username: ')
 fullname = input('Enter your full name: ')
 domains = ['VIRTUAL_DOMAIN_1', 'VIRTUAL_DOMAIN_2']
@@ -13,8 +15,8 @@ password = hashlib.md5(input('Enter your password: ').encode()).hexdigest()
 userid = f'{username}@{domain}'
 
 domains_id = {
-    'ohio.net': (5000, 5000),
-    'ohio.org': (5001, 5001)
+    'VIRTUAL_DOMAIN_1': (5000, 5000),
+    'VIRTUAL_DOMAIN_2': (5001, 5001)
 }
 
 uid = domains_id[domain][0]
@@ -28,9 +30,9 @@ data = (username, domain, password, 1, 1, userid, uid, gid, maildir)
 config = {
     'user': 'USERNAME',
     'password': 'PASSWORD',
-    'host': 'DB_SERVER',  # IP address or domain of remote DB
+    'host': 'DB_SERVER',
     'database': 'DATABASE',
-    'port': 3306  # Default MySQL port
+    'port': 3306
 }
 
 # Create a connection to the MySQL database
